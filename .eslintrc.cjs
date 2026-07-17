@@ -8,7 +8,7 @@ module.exports = {
   ],
   parserOptions: { ecmaVersion: "latest", sourceType: "module" },
   settings: { react: { version: "18.2" } },
-  plugins: ["react", "react-hooks", "react-refresh"],
+  plugins: ["react", "react-hooks", "react-refresh", "unused-imports"],
   rules: {
     "react-refresh/only-export-components": "warn",
     "react-hooks/rules-of-hooks": "error",
@@ -40,5 +40,6 @@ module.exports = {
     "comma-dangle": 0,
     "comma-spacing": 1,
     "arrow-spacing": 1,
+    "unused-imports/no-unused-imports": "error",
   },
 };
