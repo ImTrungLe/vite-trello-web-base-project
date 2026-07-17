@@ -3,8 +3,8 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "author": "TrungQuanDev - Một Lập Trình Viên",
-  "description": "https://youtube.com/@trungquandev",
+  "author": "Antony Le",
+  "description": "Cross-platform web base project for Trello clone",
   "engines": {
     "node": ">=18.x"
   },
@@ -15,8 +15,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/material": "^5.13.0",
+    "add": "^2.0.6",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-is": "18.2.0",
+    "yarn": "^1.22.22"
   },
   "devDependencies": {
     "@types/react": "^18.0.28",
