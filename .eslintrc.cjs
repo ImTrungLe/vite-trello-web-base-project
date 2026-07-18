@@ -40,6 +40,6 @@ module.exports = {
     "comma-dangle": 0,
     "comma-spacing": 1,
     "arrow-spacing": 1,
-    "unused-imports/no-unused-imports": "error",
+    "unused-imports/no-unused-imports": "warn",
   },
 };

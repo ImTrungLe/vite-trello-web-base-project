@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "jsx": "preserve",
+    "allowSyntheticDefaultImports": true,
+    "checkJs": true,
+    "strict": false
+  },
+  "include": ["src/**/*"]
+}
