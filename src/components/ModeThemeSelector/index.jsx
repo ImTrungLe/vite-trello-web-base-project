@@ -13,7 +13,7 @@ import LightModeIcon from "@mui/icons-material/LightMode";
 import DarkModeOutlinedIcon from "@mui/icons-material/DarkModeOutlined";
 import SettingsBrightnessIcon from "@mui/icons-material/SettingsBrightness";
 
-const ModeThemeSelector = () => {
+const ModeThemeSelector = ({ sx = {} }) => {
   const { mode, setMode } = useColorScheme();
 
   const handleChange = (event) => {
@@ -22,7 +22,7 @@ const ModeThemeSelector = () => {
   };
 
   return (
-    <FormControl sx={{ m: 1, minWidth: 120 }} size="small">
+    <FormControl size="small" sx={{ minWidth: "120px", ...sx }}>
       <InputLabel id="select-mode-theme-label">Mode</InputLabel>
       <Select
         labelId="select-mode-theme-label"
