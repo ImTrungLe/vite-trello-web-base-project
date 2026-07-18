@@ -34,6 +34,7 @@ const Workspaces = () => {
         endIcon={<ExpandMoreIcon />}
         sx={{
           width: "100%",
+          color: "white",
         }}
       >
         Workspaces

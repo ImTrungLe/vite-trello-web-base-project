@@ -10,6 +10,7 @@ import Badge from "@mui/material/Badge";
 import Tooltip from "@mui/material/Tooltip";
 import Drawer from "@mui/material/Drawer";
 import Divider from "@mui/material/Divider";
+import InputAdornment from "@mui/material/InputAdornment";
 
 import ModeThemeSelector from "@/components/ModeThemeSelector";
 import Workspaces from "@/components/AppBar/Menus/Workspaces";
@@ -24,19 +25,22 @@ import SvgIcon from "@mui/material/SvgIcon";
 import AppsIcon from "@mui/icons-material/Apps";
 import NotificationsNoneIcon from "@mui/icons-material/NotificationsNone";
 import HelpOutlineIcon from "@mui/icons-material/HelpOutline";
+import LibraryAddIcon from "@mui/icons-material/LibraryAdd";
+import SearchIcon from "@mui/icons-material/Search";
+import CloseIcon from "@mui/icons-material/Close";
 
 const AppBar = () => {
   const isMatchWidthFeaturesMenu = useMediaQuery("(min-width:1100px)");
   const isMatchWidthSettingsMenu = useMediaQuery("(min-width:650px)");
 
-  // Drawer state
+  // state
   const [open, setOpen] = useState(false);
+  const [searchValue, setSearchValue] = useState("");
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
   };
 
-  // Drawer content
   const DrawerList = (
     <Box
       sx={{
@@ -44,6 +48,8 @@ const AppBar = () => {
         height: "100%",
         display: "flex",
         flexDirection: "column",
+        backgroundColor: (theme) =>
+          theme.palette.mode === "dark" ? "#2c3e50" : "#1565c0",
       }}
     >
       <Box
@@ -61,9 +67,13 @@ const AppBar = () => {
         <Templates />
         <Button
           variant="outlined"
-          color="primary"
-          size="small"
-          sx={{ width: "100%" }}
+          startIcon={<LibraryAddIcon />}
+          sx={{
+            width: "100%",
+            color: "white",
+            border: "none",
+            "&:hover": { border: "none" },
+          }}
         >
           Create
         </Button>
@@ -82,9 +92,35 @@ const AppBar = () => {
           <TextField
             id="outlined-search"
             label="Search ..."
-            type="search"
+            type="text"
+            value={searchValue}
             size="small"
-            sx={{ width: "100%", mb: 1 }}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "white" }} />
+                </InputAdornment>
+              ),
+              endAdornment: searchValue && (
+                <CloseIcon
+                  sx={{ color: "white", cursor: "pointer" }}
+                  fontSize="small"
+                  onClick={() => setSearchValue("")}
+                />
+              ),
+            }}
+            sx={{
+              minWidth: "120px",
+              "& label": { color: "white" },
+              "& input": { color: "white" },
+              "& label.Mui-focused": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": { borderColor: "white" },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
           <Box sx={{ width: "100%" }}>
             <ModeThemeSelector sx={{ width: "100%" }} />
@@ -103,6 +139,8 @@ const AppBar = () => {
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
+        backgroundColor: (theme) =>
+          theme.palette.mode === "dark" ? "#2c3e50" : "#1565c0",
       }}
     >
       <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -110,7 +148,7 @@ const AppBar = () => {
           onClick={toggleDrawer(!isMatchWidthFeaturesMenu)}
           sx={{ p: 0, minWidth: "auto" }}
         >
-          <AppsIcon sx={{ color: "primary.main" }} fontSize="small" />
+          <AppsIcon sx={{ color: "white" }} fontSize="small" />
         </Button>
         <Drawer open={open} onClose={toggleDrawer(false)}>
           {DrawerList}
@@ -123,7 +161,7 @@ const AppBar = () => {
           }}
         >
           <SvgIcon
-            sx={{ color: "primary.main" }}
+            sx={{ color: "white" }}
             component={TrelloIcon}
             inheritViewBox
             fontSize="small"
@@ -132,7 +170,7 @@ const AppBar = () => {
             variant="body1"
             component="span"
             sx={{
-              color: "primary.main",
+              color: "white",
               fontWeight: "bold",
               fontSize: "1.2rem",
             }}
@@ -151,7 +189,16 @@ const AppBar = () => {
           <Recent />
           <Starred />
           <Templates />
-          <Button variant="outlined" color="primary" size="small">
+          <Button
+            variant="outlined"
+            sx={{
+              width: "100%",
+              color: "white",
+              border: "none",
+              "&:hover": { border: "none" },
+            }}
+            startIcon={<LibraryAddIcon />}
+          >
             Create
           </Button>
         </Box>
@@ -167,9 +214,38 @@ const AppBar = () => {
           <TextField
             id="outlined-search"
             label="Search ..."
-            type="search"
+            type="text"
             size="small"
-            sx={{ minWidth: "120px" }}
+            value={searchValue}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <SearchIcon sx={{ color: "white" }} />
+                </InputAdornment>
+              ),
+              endAdornment: searchValue && (
+                <CloseIcon
+                  sx={{ color: "white", cursor: "pointer" }}
+                  fontSize="small"
+                  onClick={() => setSearchValue("")}
+                />
+              ),
+            }}
+            sx={{
+              minWidth: "120px",
+              maxWidth: "170px",
+              "& label": { color: "white" },
+              "& input": { color: "white" },
+              "& label.Mui-focused": { color: "white" },
+              "& .MuiOutlinedInput-root": {
+                "& fieldset": {
+                  borderColor: "white",
+                },
+                "&:hover fieldset": { borderColor: "white" },
+                "&.Mui-focused fieldset": { borderColor: "white" },
+              },
+            }}
+            onChange={(e) => setSearchValue(e.target.value)}
           />
           <ModeThemeSelector />
         </Box>
@@ -181,17 +257,15 @@ const AppBar = () => {
           }}
         >
           <Tooltip title="Notifications">
-            <Badge color="secondary" variant="dot">
+            <Badge color="warning" variant="dot">
               <NotificationsNoneIcon
-                sx={{ color: "primary.main", cursor: "pointer" }}
+                sx={{ color: "white", cursor: "pointer" }}
               />
             </Badge>
           </Tooltip>
 
           <Tooltip title="Help">
-            <HelpOutlineIcon
-              sx={{ color: "primary.main", cursor: "pointer" }}
-            />
+            <HelpOutlineIcon sx={{ color: "white", cursor: "pointer" }} />
           </Tooltip>
 
           <Profiles />

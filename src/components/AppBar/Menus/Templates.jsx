@@ -32,7 +32,7 @@ const Templates = () => {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
         endIcon={<ExpandMoreIcon />}
-        sx={{ width: "100%" }}
+        sx={{ width: "100%", color: "white" }}
       >
         Templates
       </Button>
